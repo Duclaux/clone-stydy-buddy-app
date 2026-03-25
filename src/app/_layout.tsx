@@ -16,10 +16,9 @@ export default function RootLayout() {
       publishableKey={publishableKey}
       tokenCache={tokenCache}
     >
-      <Stack
-        screenOptions={{headerShown: false}}
-      >
-        <Stack.Screen /> 
+      <Stack screenOptions={{headerShown: false}}>
+        <Stack.Screen name="(tabs)"/> 
+        <Stack.Screen name="(auth)"/> 
       </Stack>
     </ClerkProvider>
   );

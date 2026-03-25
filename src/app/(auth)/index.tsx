@@ -3,7 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AuthScreen = () => {
@@ -117,20 +117,25 @@ const AuthScreen = () => {
                         </Pressable>
 
                         {/* APPLE btn */}
-                        <Pressable
-                            className='size-20 rounded-2xl bg-surface border border-border-light items-center justify-center active:scale-95'
-                            style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
-                            disabled={isLoading}
-                            accessibilityRole='button'
-                            accessibilityLabel='Continue with Apple'
-                            onPress={() => !isLoading && handleSocialAuth("oauth_apple")}
-                        >
-                            {loadingStrategy === "oauth_apple" ? (
-                                <ActivityIndicator size={"small"} color={"#6C5E7"} />
-                            ) : (
-                                <Ionicons name='logo-apple' size={30} color={"FFFFFE"} />
-                            )}
-                        </Pressable>
+                        { Platform.OS === "ios" ? (
+                            <Pressable
+                                className='size-20 rounded-2xl bg-surface border border-border-light items-center justify-center active:scale-95'
+                                style={({ pressed }) => ({ opacity: pressed ? 0.85 : 1 })}
+                                disabled={isLoading}
+                                accessibilityRole='button'
+                                accessibilityLabel='Continue with Apple'
+                                onPress={() => !isLoading && handleSocialAuth("oauth_apple")}
+                            >
+                                {loadingStrategy === "oauth_apple" ? (
+                                    <ActivityIndicator size={"small"} color={"#6C5E7"} />
+                                ) : (
+                                    <Ionicons name='logo-apple' size={30} color={"FFFFFE"} />
+                                )}
+                            </Pressable>
+                        ) : (
+                            <View />
+                        )}
+                        
 
                         {/* GITHUB btn */}
                         <Pressable
@@ -144,7 +149,7 @@ const AuthScreen = () => {
                             {loadingStrategy === "oauth_github" ? (
                                 <ActivityIndicator size={"small"} color={"#6C5E7"} />
                             ) : (
-                                <Ionicons name='logo-apple' size={30} color={"FFFFFE"} />
+                                <Ionicons name='logo-github' size={30} color={"FFFFFE"} />
                             )}
                         </Pressable>
                     </View>
