@@ -129,7 +129,7 @@ const AuthScreen = () => {
                                 {loadingStrategy === "oauth_apple" ? (
                                     <ActivityIndicator size={"small"} color={"#6C5E7"} />
                                 ) : (
-                                    <Ionicons name='logo-apple' size={30} color={"FFFFFE"} />
+                                    <Ionicons name='logo-apple' size={30} color={"#FFFFFE"} />
                                 )}
                             </Pressable>
                         ) : (
@@ -147,9 +147,9 @@ const AuthScreen = () => {
                             onPress={() => !isLoading && handleSocialAuth("oauth_github")}
                         >
                             {loadingStrategy === "oauth_github" ? (
-                                <ActivityIndicator size={"small"} color={"#6C5E7"} />
+                                <ActivityIndicator size={"small"} color="#6C5E7" />
                             ) : (
-                                <Ionicons name='logo-github' size={30} color={"FFFFFE"} />
+                                <Ionicons name='logo-github' size={30} color={"#FFFFFE"} />
                             )}
                         </Pressable>
                     </View>
