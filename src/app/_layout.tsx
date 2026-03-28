@@ -3,6 +3,8 @@ import { tokenCache } from '@clerk/expo/token-cache';
 import { Stack } from "expo-router";
 import "../../global.css";
 
+import ChatWrapper from '@/components/ChatWrapper';
+import { AppProvider } from '@/contexts/AppProvider';
 import * as Sentry from '@sentry/react-native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
@@ -39,10 +41,14 @@ export default function RootLayout() {
       tokenCache={tokenCache}
     >
       <GestureHandlerRootView className='flex-1'>
-        <Stack screenOptions={{headerShown: false}}>
-          <Stack.Screen name="(tabs)"/> 
-          <Stack.Screen name="(auth)"/> 
-        </Stack>
+        <ChatWrapper>
+          <AppProvider>
+            <Stack screenOptions={{headerShown: false}}>
+              <Stack.Screen name="(tabs)"/> 
+              <Stack.Screen name="(auth)"/> 
+            </Stack>
+          </AppProvider>
+        </ChatWrapper>
       </GestureHandlerRootView>
     </ClerkProvider>
   );
